@@ -1,0 +1,33 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+body{
+  color:white;
+}
+
+/* Card-form */
+form input{
+  width:100%;
+  color:black;
+  border:none;
+}
+form input:hover{
+  outline:blueviolet;
+}
+form button{
+  width:100%;
+}
+th{
+  text-align:left !important;
+  padding:10px;
+}
+.hide-overflow{
+  overflow:hidden;
+  text-overflow: ellipsis;
+  -webkit-text-size-adjust: 2;
+  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
+  max-width:100px;
+}
