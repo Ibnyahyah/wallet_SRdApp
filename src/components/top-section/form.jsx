@@ -3,7 +3,7 @@ import { TransactionContext } from '../../context/TransactionContext';
 
 export const SendingFrom=()=>{
 
-    const {setFormData, sendTransaction } = useContext(TransactionContext);
+    const {setFormData, sendTransaction,loading } = useContext(TransactionContext);
     const addressTo = React.useRef();
     const amount = React.useRef();
     const message = React.useRef();
@@ -25,7 +25,7 @@ export const SendingFrom=()=>{
         e.target.value = "";
     }
     return(
-        <div className="card bg-gray-1" style={{width:'100%'}}>
+        <div className="card aiCard bg-gray-1" style={{width:'100%'}}>
             <form onSubmit={handleSubmit}>
                 <div>
                     <input className="p-1 mt-1 bg-gray-light-4" type="text" ref={addressTo} placeholder="0xed"/>
@@ -40,8 +40,7 @@ export const SendingFrom=()=>{
                     <input className="p-1 mt-1 bg-gray-light-4" type="text" ref={keyword} placeholder="narration"/>
                 </div>
                 <div>
-                    {/* <button className="btn-gray:hover btn-gray mt-1" onClick={handleSubmit}>{formData?"loading":"Send"}</button> */}
-                    <button className="btn-gray:hover btn-gray mt-1" type='submit'>Send</button>
+                    <button className="btn-gray:hover btn-gray mt-1">{loading?"Loading...":"Send"}</button>
                 </div>
             </form>
         </div>

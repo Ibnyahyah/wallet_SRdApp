@@ -20,6 +20,7 @@ export const TransactionProvider = ({children})=>{
     const [currentAccount, setCurrentAccount] = React.useState('');
     const [formData, setFormData] = React.useState({ addressTo: '', amount:'', keyword:'', message:''});
     const [loading, setLoading] = React.useState(false);
+    const [transactions, setTransactions] = React.useState([]);
     const [transactionCount, settransactionCount] = React.useState(localStorage.getItem('transactionCount'));
 
     // const handleChange = (e, name)=>{
@@ -32,7 +33,16 @@ export const TransactionProvider = ({children})=>{
                 const transactionContract = getEthereumContract();
                 const availableTransactions = await transactionContract.getAllTransactions();
 
-                console.log(availableTransactions)
+                const structuredTransactions = availableTransactions.map((transaction)=>({
+                    addressTo: transaction.receiver,
+                    addressFrom: transaction.sender,
+                    timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
+                    message:transaction.message,
+                    keyword:transaction.keyword,
+                    amount:parseInt(transaction.amount._hex)/(10 ** 18)
+
+                }))
+                setTransactions(structuredTransactions)
             }catch(error){
                 console.log(error)
             }
@@ -45,7 +55,6 @@ export const TransactionProvider = ({children})=>{
             if(accounts.length){
                 setCurrentAccount(accounts[0]);
                 getAllTransactions()
-                console.log(accounts)
             }else{
                 console.log("No account found")
             }
@@ -113,6 +122,8 @@ export const TransactionProvider = ({children})=>{
             const transactionCount = await transactionContract.getTransactionCount();
 
             settransactionCount(transactionCount.toNumber());
+
+            window.reload();
         }catch(error){
             console.log(error);
 
@@ -126,7 +137,7 @@ export const TransactionProvider = ({children})=>{
         checkIfTransactionExist();
     },[])
     return(
-        <TransactionContext.Provider value={{connectWallet, currentAccount, setFormData, sendTransaction}}>
+        <TransactionContext.Provider value={{connectWallet, currentAccount, setFormData, sendTransaction, transactions, loading}}>
             {children}
         </TransactionContext.Provider>
     )

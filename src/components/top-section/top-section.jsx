@@ -24,12 +24,12 @@ const TopSection = () =>{
                     <button className="btn-blue:hover btn-blue br-sm" onClick={connectWallet}>{currentAccount?"Connected":"Connect to Wallet"}</button>
                 </div>
                 <div className="col-12-sm col-6-md">
-                    <div className="card bg-gray-light-7 mt-1 mb-2">
+                    <div className="card aiCard bg-gray-light-7 mt-1 mb-2">
                         <div className="display-f justify-space-between">
                             <div className="display-f justify-center align-center" style={{width:'50px', height:'50px', border:'3px solid white', borderRadius:'50%'}}>
                                 SR
                             </div>
-                            <div  className="display-f justify-center align-center" style={{width:'20px', height:'20px', border:'1px solid white', borderRadius:'50%'}}>
+                            <div className="display-f justify-center align-center" style={{width:'20px', height:'20px', border:'1px solid white', borderRadius:'50%'}}>
                                 !
                             </div>
                         </div>

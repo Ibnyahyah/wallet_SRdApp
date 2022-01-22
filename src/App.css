@@ -31,3 +31,12 @@ th{
   -webkit-box-orient: vertical;
   max-width:100px;
 }
+.transaction{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+@media (max-width:960px) {
+  .aiCard{
+    width: 90vw !important;;
+  }
+}
